@@ -3,11 +3,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="beaker32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="media/icon32.png" sizes="32x32">
     <meta charset="UTF-8">
     <title>WasDetail</title>
 </head>
 <style>
+    @font-face {
+        font-family: "PontanoSans";
+        src: url("fonts/Pontano_Sans/PontanoSans-VariableFont_wght.ttf") format("truetype");
+    }
     body
     {
         background-color: white;
@@ -19,7 +23,7 @@
         padding: 0;
     }
     span{
-        font-family: "Avenir Next", sans-serif;
+        font-family: "PontanoSans", sans-serif;
         font-weight: lighter;
     }
 
@@ -30,9 +34,9 @@
     </div>
     <video id="v0" width="96%" style="display: block; margin: 0 2%" muted autoplay loop src="media/drive2.mov"></video>
 
-    <div style="width: 100%; height: 200px; overflow: hidden; text-align: center">
+    <div style="width: 100%; height: 200px; overflow: hidden; text-align: center; position: relative">
         <video src="media/droplet.mov" style="transform: translateY(-450px)" muted loop></video>
-        <span style="position: absolute; top: 830px; left: 600px; font-size: 30px; font-weight: normal; color: white">Detail Matters</span>
+        <span style="position: absolute; top: 80px; left: 600px; font-size: 30px; font-weight: normal; color: white">Detail Matters</span>
     </div>
 
     <div style="height: 80px; width: 100%"></div>
