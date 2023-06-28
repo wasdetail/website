@@ -1,1 +1,108 @@
-<meta http-equiv="refresh" content="0; url=https://github.com/wasdetail/website/blob/main/home.html" />
+<!--Created by Ryan Berg 6/25/23-->
+<!--ToDo: deal with viewport resizing-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="media/icon32.png" sizes="32x32">
+    <meta charset="UTF-8">
+    <title>WasDetail</title>
+</head>
+<style>
+    @font-face {
+        font-family: "PontanoSans";
+        src: url("fonts/Pontano_Sans/PontanoSans-VariableFont_wght.ttf") format("truetype");
+    }
+    body
+    {
+        background-color: white;
+        margin: 0;
+    }
+    div{
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    span{
+        font-family: "PontanoSans", sans-serif;
+        font-weight: lighter;
+    }
+
+</style>
+<body>
+    <div style="position: absolute; left: 0; top: 240px; width: 100%; height: 60px; background-color: #a90000; text-align: center; line-height: 60px">
+        <span style="font-size: 40px; color: white; ">White as Snow Detail</span>
+    </div>
+    <video id="red_trees" width="96%" style="display: block; margin: 0 2%" muted autoplay src="media/red_trees.mov"></video>
+
+    <div style="width: 100%; height: 150px; overflow: hidden; text-align: center; position: relative">
+        <video id="droplet" src="media/droplet.mov" style="transform: translateY(-470px)" muted loop></video>
+        <span style="position: absolute; top: 60px; left: 600px; font-size: 30px; font-weight: normal; color: white">Detail Matters</span>
+    </div>
+
+    <div style="height: 80px; width: 100%"></div>
+
+    <div style="height: 500px; width: 50%; float: left;">
+        <div style="width: 80%; height: 450px; margin: auto; background-color: lightgrey">
+            <video src="media/brush.mov#t=5" muted loop height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        </div>
+    </div>
+    <div style="height: 500px; width: 50%; float: left; text-align: right">
+        <div style="width: 80%; height: 450px; margin: auto; background-color: lightgrey">
+            <video src="media/door.mov" muted loop height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        </div>
+    </div>
+
+    <div style="height: 150px; width: 50%; float: left; text-align: center">
+        <span>
+            Exterior<br>
+        Blah Blah Blah<br>
+        Blah Blah Blah<br>
+        Blah Blah Blah<br>
+        </span>
+    </div>
+    <div style="height: 150px; width: 50%; float: left; text-align: center">
+        <span>
+            Interior<br>
+        Blah Blah Blah<br>
+        Blah Blah Blah<br>
+        Blah Blah Blah<br>
+        </span>
+
+    </div>
+
+
+    <div style="height: 600px; width: 100%; position: relative; text-align: center">
+        <span style="position: absolute; top: 0; color: white;">&nbsp;By Local Craftsmen</span>
+        <video src="media/foam.mov" muted autoplay loop width="100%"></video>
+    </div>
+
+    <div style="height: 560px; width: 100%; float: left; text-align: center; background: url('media/wide2.jpeg') no-repeat; background-size: 100%, auto">
+        <div style="width: 100%; padding-top: 12px; text-align: center">
+            <span style="font-weight: normal">Which treatment is right for you?</span>
+        </div>
+        <div style="float: left; width: 33%; height: 548px;">
+            <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">
+                <span style="font-weight: normal; font-size: 22px">Basic</span>
+            </div>
+        </div>
+        <div style="float: left; width: 33%; height: 548px">
+            <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">
+                <span style="font-weight: normal; font-size: 22px">Premium</span>
+            </div>
+        </div>
+        <div style="float: left; width: 33%; height: 548px">
+            <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">
+                <span style="font-weight: normal; font-size: 22px">VIP</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    document.getElementById("red_trees").addEventListener("ended", () =>
+    {
+        document.getElementById("droplet").play();
+    }, false);
+
+</script>
+</html>
