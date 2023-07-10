@@ -12,9 +12,13 @@
         font-family: "PontanoSans";
         src: url("fonts/Pontano_Sans/PontanoSans-VariableFont_wght.ttf") format("truetype");
     }
+    @font-face {
+        font-family: "Plateia Bold";
+        src: url("fonts/plateia-bold/Plateia Bold.ttf") format("truetype");
+    }
     body
     {
-        background-color: white;
+        background-color: black;
         margin: 0;
     }
     div{
@@ -26,83 +30,212 @@
         font-family: "PontanoSans", sans-serif;
         font-weight: lighter;
     }
+    h1{
+        font-family: "Plateia Bold", "PontanoSans", sans-serif;
+        font-size: 20px;
+        height: 18px;
+    }
+
+    #sign{
+        animation: swing ease-in-out 1.8s infinite alternate;
+        transform-origin: top center;
+    }
+    @keyframes swing {
+        0% {transform: rotate3d(1, 0, 0, 15deg);}
+        100% {transform: rotate3d(1, 0, 0, -15deg); }
+    }
+
+    #sign-board{
+        animation: move-shadow ease-in-out 1.8s infinite alternate;
+    }
+
+    @keyframes move-shadow {
+        0% {box-shadow: 0 10px 8px rgba(0, 0, 0, .7);}
+        50%{box-shadow: 0 5px 8px rgba(0, 0, 0, .7);}
+        100% {box-shadow: 0 5px 8px rgba(0, 0, 0, .7);}
+    }
 
 </style>
 <body>
-    <div style="position: absolute; left: 0; top: 240px; width: 100%; height: 60px; background-color: #a90000; text-align: center; line-height: 60px">
-        <span style="font-size: 40px; color: white; ">White as Snow Detail</span>
+<a href="https://twitter.com/wasdetail">
+    <img style="height: 30px; width: 30px; right: 27px; position: fixed; bottom: 88px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7)" src="media/twit.svg">
+</a>
+<a href="https://www.facebook.com/profile.php?id=100093386093246">
+    <img style="height: 30px; width: 30px; right: 27px; position: fixed; bottom: 168px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7);" src="media/face.svg">
+</a>
+<a href="https://www.youtube.com/@wasdetail">
+    <img style="height: 30px; width: 30px; right: 27px; position: fixed; bottom: 128px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7)" src="media/youtube.svg">
+</a>
+<a href="https://www.instagram.com/wasdetail/">
+    <img style="height: 30px; width: 30px; right: 27px; position: fixed; bottom: 208px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7);" src="media/insta.svg">
+</a>
+<img style="height: 60px; width: 60px; right: 10px; position: fixed; bottom: 10px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7)" src="media/logo_alt.svg" onclick="document.scrollingElement.scrollTop = 0">
+
+    <div id="banner" style="position: fixed; left: 0; top: 0; width: 100vw; height: 60px; background-image: url(media/wood2.jpg); z-index: 999; background-size: 10%; box-shadow: 0 0 10px rgba(0, 0, 0, .7); text-align: center; line-height: 60px">
+        <h1 style="color: white; top: -28px; left: 30px; position: absolute">WHITE AS SNOW</h1>
+        <h1 style="color: #333333; top: -4px; left: 30px; position: absolute">DETAIL</h1>
+        <h1 style="color: white; top: -28px; right: 30px; position: absolute"><a style="color: white" href="tel:+13609492583">(360) 949-2583</a></h1>
     </div>
-    <video id="red_trees" width="96%" style="display: block; margin: 0 2%" muted autoplay src="media/red_trees.mov"></video>
+    <div id="sign" style="position: fixed; top: 60px; left: 40px; width: 200px; height: 120px; cursor: pointer; z-index: 10" onclick="document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight">
 
-    <div style="width: 100%; height: 150px; overflow: hidden; text-align: center; position: relative">
-        <video id="droplet" src="media/droplet.mov" style="transform: translateY(-470px)" muted loop></video>
-        <span style="position: absolute; top: 60px; left: 600px; font-size: 30px; font-weight: normal; color: white">Detail Matters</span>
-    </div>
-
-    <div style="height: 80px; width: 100%"></div>
-
-    <div style="height: 500px; width: 50%; float: left;">
-        <div style="width: 80%; height: 450px; margin: auto; background-color: lightgrey">
-            <video src="media/brush.mov#t=5" muted loop height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <div style="margin-top: 16px">
+            <div id="sign-board" style="
+                position: absolute; background-image: url(media/wood.jpg); background-size: 100%; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;
+                width: 182px; height: 80px; left: 10px;"></div>
+            <span style="position:absolute; top:42px; left: 42px; font-weight: normal; font-size: 26px; color: white">See Pricing</span>
         </div>
-    </div>
-    <div style="height: 500px; width: 50%; float: left; text-align: right">
-        <div style="width: 80%; height: 450px; margin: auto; background-color: lightgrey">
-            <video src="media/door.mov" muted loop height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        </div>
+
+        <div style="background-color: white; background-image: url(media/rope.jpg); background-size: 700%; position: absolute; left: 10px; width: 6px; height: 16px; top: 0"></div>
+        <div style="background-color: white; background-image: url(media/rope.jpg); background-size: 700%; position: absolute; left: 186px; width: 6px; height: 16px; top: 0"></div>
+
     </div>
 
-    <div style="height: 150px; width: 50%; float: left; text-align: center">
-        <span>
-            Exterior<br>
-        Blah Blah Blah<br>
-        Blah Blah Blah<br>
-        Blah Blah Blah<br>
+    <div style="position: fixed; width: 100vw; height: 700px; background-color: white; z-index: -999">
+        <video id="red_trees" width="100%" style="display: block; margin: 0 0; position: absolute" muted src="media/red_trees.mov#t=7"></video>
+        <span style="top: 30vh; left: 550px; position: relative; font-weight: normal; color: white; text-shadow: 0 0 3px black; font-size: 20px">
+            "Though your sins are like scarlet,<br> I will make them as white as snow..."
         </span>
     </div>
-    <div style="height: 150px; width: 50%; float: left; text-align: center">
-        <span>
-            Interior<br>
-        Blah Blah Blah<br>
-        Blah Blah Blah<br>
-        Blah Blah Blah<br>
-        </span>
 
-    </div>
+    <div id="filler" style="width: 100vw; height: 700px"></div>
 
-
-    <div style="height: 600px; width: 100%; position: relative; text-align: center">
-        <span style="position: absolute; top: 0; color: white;">&nbsp;By Local Craftsmen</span>
-        <video src="media/foam.mov" muted autoplay loop width="100%"></video>
-    </div>
-
-    <div style="height: 560px; width: 100%; float: left; text-align: center; background: url('media/wide2.jpeg') no-repeat; background-size: 100%, auto">
-        <div style="width: 100%; padding-top: 12px; text-align: center">
-            <span style="font-weight: normal">Which treatment is right for you?</span>
+    <div style="background-color: white">
+        <div style="width: 100%; height: 150px; overflow: hidden; text-align: center; position: relative">
+            <video id="droplet" src="media/droplet.mov" style="transform: translateY(-400px) translateX(-300px);" muted autoplay loop></video>
+            <span style="position: absolute; top: 60px; left: 600px; font-size: 30px; color: white">Where Detail Matters</span>
         </div>
-        <div style="float: left; width: 33%; height: 548px;">
-            <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">
-                <span style="font-weight: normal; font-size: 22px">Basic</span>
+
+        <div style="height: 40px; width: 100%"></div>
+
+        <div style="height: 100px; width: 50%; float: left; text-align: center">
+            <span>
+                <b>Exterior</b><br>
+            Bright and Long Lasting<br>
+            Protection you can count on.<br>
+            </span>
+        </div>
+        <div style="height: 100px; width: 50%; float: left; text-align: center">
+            <span>
+                <b>Interior</b><br>
+            Looks Sweet, Feels Sweeter<br>
+                High quality where you need it most.
+            </span>
+        </div>
+
+        <div style="height: 500px; width: 50%; float: left;">
+            <div style="width: 80%; height: 450px; margin: auto; background-color: lightgrey">
+                <video src="media/brush.mov#t=5" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
             </div>
         </div>
-        <div style="float: left; width: 33%; height: 548px">
-            <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">
-                <span style="font-weight: normal; font-size: 22px">Premium</span>
+        <div style="height: 500px; width: 50%; float: left; text-align: right">
+            <div style="width: 80%; height: 450px; margin: auto; background-color: lightgrey">
+                <video src="media/door.mov" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
             </div>
         </div>
-        <div style="float: left; width: 33%; height: 548px">
-            <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">
-                <span style="font-weight: normal; font-size: 22px">VIP</span>
+
+
+        <div style="height: 600px; width: 100%; position: relative; text-align: center; background-color: black">
+<!--            <span style="position: absolute; top: 0; color: white;">&nbsp;By Local Craftsmen</span>-->
+            <video style="position: absolute; left: 0; top: 0; transform: translateY(-150px)" src="media/snow_night.mov" muted autoplay loop width="100%"></video>
+            <div style="width: 100%; padding-top: 12px; text-align: center; opacity: .99">
+                <h1><span style="font-weight: normal; color: white">Pricing</span></h1>
+                <span style="color: white">Additional services available on request.</span>
             </div>
+
+            <div style="float: left; width: 33%; height: 548px">
+                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
+                    <div style="padding: 10px">
+                        <span style="font-weight: normal; font-size: 22px">Outside</span>
+                        <span><br><br></span>
+                        <li><span>Emblems and crevices brush detailed</span></li>
+                        <li><span>Paint, wheels and tires</span></li>
+                        <li><span>Snow foam long lasting shine</span></li>
+                        <li><span>Microfiber wipes used to spot dry</span></li>
+                        <li><span>All purpose wax bars hand applied</span></li>
+                        <span><br>Compact Car or Sedan: $200</span>
+                        <span><br>Truck or Large SUV: $250</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="float: left; width: 33%; height: 548px;">
+                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
+                    <div style="padding: 10px">
+                        <span style="font-weight: normal; font-size: 22px">In</span>
+                        <span><br><br></span>
+                        <li><span>Carpets shampooed with Cali Luxe®</span></li>
+                        <li><span>Heavy duty vacuuming in every knook and cranny</span></li>
+                        <li><span>Windows sparkle treated and Windexed®</span></li>
+                        <li><span>Fabric and leather cleaned and conditioned</span></li>
+                        <li><span>All plastic surfaces wiped with Max Renewal®</span></li>
+                        <br>
+                        <span>Compact Car or Sedan: $200</span>
+                        <span><br>Truck or Large SUV: $250</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="float: left; width: 33%; height: 548px">
+                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
+                    <div style="padding: 14px">
+                        <span style="font-weight: normal; font-size: 22px">Inside & Out </span><span> (Best Deal)</span>
+                        <span><br><br></span>
+                        <li><span>Emblems and crevices brush detailed</span></li>
+                        <li><span>Paint, wheels and tires</span></li>
+                        <li><span>Snow foam long lasting shine</span></li>
+                        <li><span>Microfiber wipes used to spot dry</span></li>
+                        <li><span>All purpose wax bars hand applied</span></li>
+                        <li><span>Carpets shampooed with Cali Luxe®</span></li>
+                        <li><span>Heavy duty vacuuming in every knook and cranny</span></li>
+                        <li><span>Windows sparkle treated and Windexed®</span></li>
+                        <li><span>Fabric and leather cleaned and conditioned</span></li>
+                        <li><span>All plastic surfaces wiped with Max Renewal®</span></li>
+                        <span><br>Compact Car or Sedan: $350</span>
+                        <span><br>Truck or Large SUV: $450</span>
+                    </div>
+
+                </div>
+            </div>
+
+
         </div>
-    </div>
+        </div>
+
+<!--        <div style="height: 560px; width: 100%; float: left; text-align: center; background: url('media/wide2.jpeg') no-repeat; background-size: 100%, auto">-->
+<!--            <div style="width: 100%; padding-top: 12px; text-align: center">-->
+<!--                <span style="font-weight: normal">Which treatment is right for you?</span>-->
+<!--            </div>-->
+<!--            <div style="float: left; width: 33%; height: 548px;">-->
+<!--                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">-->
+<!--                    <span style="font-weight: normal; font-size: 22px">Basic</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div style="float: left; width: 33%; height: 548px">-->
+<!--                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">-->
+<!--                    <span style="font-weight: normal; font-size: 22px">Premium</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div style="float: left; width: 33%; height: 548px">-->
+<!--                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">-->
+<!--                    <span style="font-weight: normal; font-size: 22px">VIP</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
 </body>
 <script>
+function scroll()
+{
+    document.scrollingElement.animate()
 
-    document.getElementById("red_trees").addEventListener("ended", () =>
-    {
-        document.getElementById("droplet").play();
-    }, false);
+}
+
+    // document.getElementById("red_trees").addEventListener("ended", () =>
+    // {
+    //     document.getElementById("droplet").play();
+    // }, false);
 
 </script>
 </html>
