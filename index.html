@@ -1,5 +1,9 @@
 <!--Created by Ryan Berg 6/25/23-->
-<!--ToDo: deal with viewport resizing-->
+<!--ToDo: bug fix-->
+<!--Bottom video on scale-->
+<!--elements too close at top on small resize-->
+<!--social media buttons cut off by padding-->
+<!--ToDo: remove watermarks-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +26,6 @@
         margin: 0;
     }
     div{
-        overflow: hidden;
         margin: 0;
         padding: 0;
     }
@@ -53,6 +56,89 @@
         0% {box-shadow: 0 10px 8px rgba(0, 0, 0, .7);}
         50%{box-shadow: 0 5px 8px rgba(0, 0, 0, .7);}
         100% {box-shadow: 0 5px 8px rgba(0, 0, 0, .7);}
+    }
+
+    .inner-flex
+    {
+        margin: 25px auto;
+        width: 100%;
+        padding:0 1%;
+        word-wrap:break-word;
+    }
+    .inner-flex3
+    {
+        margin: 25px auto;
+        width: 100%;
+        padding:0 1%;
+        word-wrap:break-word;
+    }
+    .flex{
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+    }
+    .vertical-align
+    {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        /*min-height: 100px;*/
+    }
+
+    .full-video {
+        height: 100%;
+        width: 177.77777778vh; /* 100 * 16 / 9 */
+        min-width: 100%;
+        min-height: 56.25vw; /* 100 * 9 / 16 */
+    }
+
+    @media (max-width: 352px)
+    {
+        #text
+        {
+            font-size: 70px;
+        }
+    }
+    @media (min-width: 1000px)
+    {
+        .inner-flex {width: 48%;}
+        .inner-flex3 {width: 30%;}
+    }
+    @media (max-width: 1018px)
+    {
+        .category-image
+        {
+            height: 100%;
+            max-width: none;
+        }
+        .video-container
+        {
+            width: 100%;
+        }
+        .video-container video
+        {
+            width: 100%;
+        }
+        .video-container img
+        {
+            width: 100%;
+        }
+        .width-adjust
+        {
+            width: 95%;
+        }
+        .width-adjust video
+        {
+            display: none;
+        }
+        .tab-group
+        {
+            /*display: none;*/
+        }
+        #Home
+        {
+            height: 100%; top: 0;
+        }
     }
 
 </style>
@@ -91,8 +177,8 @@
     </div>
 
     <div style="position: fixed; width: 100vw; height: 700px; background-color: white; z-index: -999">
-        <video id="red_trees" width="100%" style="display: block; margin: 0 0; position: absolute" muted src="media/red_trees.mov#t=7"></video>
-        <span style="top: 30vh; left: 550px; position: relative; font-weight: normal; color: white; text-shadow: 0 0 3px black; font-size: 20px">
+        <video class="full-video" id="red_trees" width="100%" style="display: block; margin: 0 0; position: absolute" muted src="media/red_trees.mov#t=7"></video>
+        <span style="top: 30vh; left: 25vw; position: relative; font-weight: normal; color: white; text-shadow: 0 0 3px black; font-size: 20px">
             "Though your sins are like scarlet,<br> I will make them as white as snow..."
         </span>
     </div>
@@ -105,99 +191,110 @@
             <span style="position: absolute; top: 60px; left: 600px; font-size: 30px; color: white">Where Detail Matters</span>
         </div>
 
-        <div style="height: 40px; width: 100%"></div>
-
-        <div style="height: 100px; width: 50%; float: left; text-align: center">
+        <div class="flex">
+            <div class="inner-flex">
+                <div style="height: 100px; text-align: center">
             <span>
                 <b>Exterior</b><br>
             Bright and Long Lasting<br>
             Protection you can count on.<br>
             </span>
-        </div>
-        <div style="height: 100px; width: 50%; float: left; text-align: center">
+                </div>
+
+                <div style="height: 500px; ">
+                    <div style="width: 450px; height: 450px; margin: auto; background-color: lightgrey; overflow: hidden">
+                        <video src="media/brush.mov#t=5" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inner-flex">
+                <div style="height: 100px; text-align: center">
             <span>
                 <b>Interior</b><br>
             Looks Sweet, Feels Sweeter<br>
                 High quality where you need it most.
             </span>
-        </div>
+                </div>
 
-        <div style="height: 500px; width: 50%; float: left;">
-            <div style="width: 80%; height: 450px; margin: auto; background-color: lightgrey">
-                <video src="media/brush.mov#t=5" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                <div style="height: 500px; text-align: right; margin-bottom: 150px;">
+                    <div style="width: 450px; height: 450px; margin: auto; background-color: lightgrey; overflow: hidden">
+                        <video src="media/door.mov" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                    </div>
+                </div>
             </div>
         </div>
-        <div style="height: 500px; width: 50%; float: left; text-align: right">
-            <div style="width: 80%; height: 450px; margin: auto; background-color: lightgrey">
-                <video src="media/door.mov" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-            </div>
-        </div>
-
 
         <div style="height: 600px; width: 100%; position: relative; text-align: center; background-color: black">
 <!--            <span style="position: absolute; top: 0; color: white;">&nbsp;By Local Craftsmen</span>-->
-            <video style="position: absolute; left: 0; top: 0; transform: translateY(-150px)" src="media/snow_night.mov" muted autoplay loop width="100%"></video>
+            <video class="full-video" style="position: absolute; left: 0; top: 0;" src="media/snow_night.mov" muted autoplay loop></video>
             <div style="width: 100%; padding-top: 12px; text-align: center; opacity: .99">
                 <h1><span style="font-weight: normal; color: white">Pricing</span></h1>
                 <span style="color: white">Additional services available on request.</span>
             </div>
 
-            <div style="float: left; width: 33%; height: 548px">
-                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
-                    <div style="padding: 10px">
-                        <span style="font-weight: normal; font-size: 22px">Outside</span>
-                        <span><br><br></span>
-                        <li><span>Emblems and crevices brush detailed</span></li>
-                        <li><span>Paint, wheels and tires</span></li>
-                        <li><span>Snow foam long lasting shine</span></li>
-                        <li><span>Microfiber wipes used to spot dry</span></li>
-                        <li><span>All purpose wax bars hand applied</span></li>
-                        <span><br>Compact Car or Sedan: $200</span>
-                        <span><br>Truck or Large SUV: $250</span>
+            <div class="flex" style="background-color: black">
+
+                <div class="inner-flex3">
+                    <div style="height: 548px">
+                        <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
+                            <div style="padding: 10px">
+                                <span style="font-weight: normal; font-size: 22px">Outside</span>
+                                <span><br><br></span>
+                                <li><span>Emblems and crevices brush detailed</span></li>
+                                <li><span>Paint, wheels and tires</span></li>
+                                <li><span>Snow foam long lasting shine</span></li>
+                                <li><span>Microfiber wipes used to spot dry</span></li>
+                                <li><span>All purpose wax bars hand applied</span></li>
+                                <span><br>Compact Car or Sedan: $200</span>
+                                <span><br>Truck or Large SUV: $250</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner-flex3">
+                    <div style="height: 548px;">
+                        <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
+                            <div style="padding: 10px">
+                                <span style="font-weight: normal; font-size: 22px">In</span>
+                                <span><br><br></span>
+                                <li><span>Carpets shampooed with Cali Luxe®</span></li>
+                                <li><span>Heavy duty vacuuming in every knook and cranny</span></li>
+                                <li><span>Windows sparkle treated and Windexed®</span></li>
+                                <li><span>Fabric and leather cleaned and conditioned</span></li>
+                                <li><span>All plastic surfaces wiped with Max Renewal®</span></li>
+                                <br>
+                                <span>Compact Car or Sedan: $200</span>
+                                <span><br>Truck or Large SUV: $250</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner-flex3">
+                    <div style="height: 548px">
+                        <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
+                            <div style="padding: 14px">
+                                <span style="font-weight: normal; font-size: 22px">Inside & Out </span><span> (Best Deal)</span>
+                                <span><br><br></span>
+                                <li><span>Emblems and crevices brush detailed</span></li>
+                                <li><span>Paint, wheels and tires</span></li>
+                                <li><span>Snow foam long lasting shine</span></li>
+                                <li><span>Microfiber wipes used to spot dry</span></li>
+                                <li><span>All purpose wax bars hand applied</span></li>
+                                <li><span>Carpets shampooed with Cali Luxe®</span></li>
+                                <li><span>Heavy duty vacuuming in every knook and cranny</span></li>
+                                <li><span>Windows sparkle treated and Windexed®</span></li>
+                                <li><span>Fabric and leather cleaned and conditioned</span></li>
+                                <li><span>All plastic surfaces wiped with Max Renewal®</span></li>
+                                <span><br>Compact Car or Sedan: $350</span>
+                                <span><br>Truck or Large SUV: $450</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div style="float: left; width: 33%; height: 548px;">
-                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
-                    <div style="padding: 10px">
-                        <span style="font-weight: normal; font-size: 22px">In</span>
-                        <span><br><br></span>
-                        <li><span>Carpets shampooed with Cali Luxe®</span></li>
-                        <li><span>Heavy duty vacuuming in every knook and cranny</span></li>
-                        <li><span>Windows sparkle treated and Windexed®</span></li>
-                        <li><span>Fabric and leather cleaned and conditioned</span></li>
-                        <li><span>All plastic surfaces wiped with Max Renewal®</span></li>
-                        <br>
-                        <span>Compact Car or Sedan: $200</span>
-                        <span><br>Truck or Large SUV: $250</span>
-                    </div>
-                </div>
-            </div>
-
-            <div style="float: left; width: 33%; height: 548px">
-                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
-                    <div style="padding: 14px">
-                        <span style="font-weight: normal; font-size: 22px">Inside & Out </span><span> (Best Deal)</span>
-                        <span><br><br></span>
-                        <li><span>Emblems and crevices brush detailed</span></li>
-                        <li><span>Paint, wheels and tires</span></li>
-                        <li><span>Snow foam long lasting shine</span></li>
-                        <li><span>Microfiber wipes used to spot dry</span></li>
-                        <li><span>All purpose wax bars hand applied</span></li>
-                        <li><span>Carpets shampooed with Cali Luxe®</span></li>
-                        <li><span>Heavy duty vacuuming in every knook and cranny</span></li>
-                        <li><span>Windows sparkle treated and Windexed®</span></li>
-                        <li><span>Fabric and leather cleaned and conditioned</span></li>
-                        <li><span>All plastic surfaces wiped with Max Renewal®</span></li>
-                        <span><br>Compact Car or Sedan: $350</span>
-                        <span><br>Truck or Large SUV: $450</span>
-                    </div>
-
-                </div>
-            </div>
-
-
         </div>
         </div>
 
