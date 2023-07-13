@@ -1,338 +1,281 @@
-<!--Created by Ryan Berg 6/25/23-->
-<!--ToDo: bug fix-->
-<!--Bottom video on scale-->
-<!--elements too close at top on small resize-->
-<!--social media buttons cut off by padding-->
-<!--ToDo: remove watermarks-->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="media/icon32.png" sizes="32x32">
-    <meta charset="UTF-8">
-    <title>WasDetail</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WAS Deatail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .video-overlay{
+            position:relative;
+            top:0;
+            left:0;
+            z-index:1;
+            background-color: rgba(255, 255, 255, .9);
+            height: 50vh;
+            min-height: 25rem;
+            width: 100%;
+            overflow: hidden;
+        }
+        #splash-video{
+            position: absolute;
+            -o-filter: blur(15px);
+            filter: blur(15px);
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            -ms-transform: translateX(-50%) translateY(-50%);
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+        }
+        @media (pointer: coarse) and (hover: none) {
+            header {
+                background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+            }
+
+            header video {
+                display: none;
+            }
+        }
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+            .pricing-card-body{
+                height: 530px;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+    </style>
+    <link href="css/product.css" rel="stylesheet">
+    <link href="pricing.css" rel="stylesheet">
 </head>
-<style>
-    @font-face {
-        font-family: "PontanoSans";
-        src: url("fonts/Pontano_Sans/PontanoSans-VariableFont_wght.ttf") format("truetype");
-    }
-    @font-face {
-        font-family: "Plateia Bold";
-        src: url("fonts/plateia-bold/Plateia Bold.ttf") format("truetype");
-    }
-    body
-    {
-        background-color: black;
-        margin: 0;
-    }
-    div{
-        margin: 0;
-        padding: 0;
-    }
-    span{
-        font-family: "PontanoSans", sans-serif;
-        font-weight: lighter;
-    }
-    h1{
-        font-family: "Plateia Bold", "PontanoSans", sans-serif;
-        font-size: 20px;
-        height: 18px;
-    }
-
-    #sign{
-        animation: swing ease-in-out 1.8s infinite alternate;
-        transform-origin: top center;
-    }
-    @keyframes swing {
-        0% {transform: rotate3d(1, 0, 0, 15deg);}
-        100% {transform: rotate3d(1, 0, 0, -15deg); }
-    }
-
-    #sign-board{
-        animation: move-shadow ease-in-out 1.8s infinite alternate;
-    }
-
-    @keyframes move-shadow {
-        0% {box-shadow: 0 10px 8px rgba(0, 0, 0, .7);}
-        50%{box-shadow: 0 5px 8px rgba(0, 0, 0, .7);}
-        100% {box-shadow: 0 5px 8px rgba(0, 0, 0, .7);}
-    }
-
-    .inner-flex
-    {
-        margin: 25px auto;
-        width: 100%;
-        padding:0 1%;
-        word-wrap:break-word;
-    }
-    .inner-flex3
-    {
-        margin: 25px auto;
-        width: 100%;
-        padding:0 1%;
-        word-wrap:break-word;
-    }
-    .flex{
-        display: flex;
-        align-content: center;
-        flex-wrap: wrap;
-    }
-    .vertical-align
-    {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        /*min-height: 100px;*/
-    }
-
-    .full-video {
-        height: 100%;
-        width: 177.77777778vh; /* 100 * 16 / 9 */
-        min-width: 100%;
-        min-height: 56.25vw; /* 100 * 9 / 16 */
-    }
-
-    @media (max-width: 352px)
-    {
-        #text
-        {
-            font-size: 70px;
-        }
-    }
-    @media (min-width: 1000px)
-    {
-        .inner-flex {width: 48%;}
-        .inner-flex3 {width: 30%;}
-    }
-    @media (max-width: 1018px)
-    {
-        .category-image
-        {
-            height: 100%;
-            max-width: none;
-        }
-        .video-container
-        {
-            width: 100%;
-        }
-        .video-container video
-        {
-            width: 100%;
-        }
-        .video-container img
-        {
-            width: 100%;
-        }
-        .width-adjust
-        {
-            width: 95%;
-        }
-        .width-adjust video
-        {
-            display: none;
-        }
-        .tab-group
-        {
-            /*display: none;*/
-        }
-        #Home
-        {
-            height: 100%; top: 0;
-        }
-    }
-
-</style>
 <body>
-<a href="https://twitter.com/wasdetail">
-    <img style="height: 30px; width: 30px; right: 27px; position: fixed; bottom: 88px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7)" src="media/twit.svg">
-</a>
-<a href="https://www.facebook.com/profile.php?id=100093386093246">
-    <img style="height: 30px; width: 30px; right: 27px; position: fixed; bottom: 168px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7);" src="media/face.svg">
-</a>
-<a href="https://www.youtube.com/@wasdetail">
-    <img style="height: 30px; width: 30px; right: 27px; position: fixed; bottom: 128px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7)" src="media/youtube.svg">
-</a>
-<a href="https://www.instagram.com/wasdetail/">
-    <img style="height: 30px; width: 30px; right: 27px; position: fixed; bottom: 208px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7);" src="media/insta.svg">
-</a>
-<img style="height: 60px; width: 60px; right: 10px; position: fixed; bottom: 10px; background-color: white; border-radius: 50%; padding: 4px; z-index: 999; box-shadow: 0 0 5px rgba(0, 0 ,0, .7)" src="media/logo_alt.svg" onclick="document.scrollingElement.scrollTop = 0">
-
-    <div id="banner" style="position: fixed; left: 0; top: 0; width: 100vw; height: 60px; background-image: url(media/wood2.jpg); z-index: 999; background-size: 10%; box-shadow: 0 0 10px rgba(0, 0, 0, .7); text-align: center; line-height: 60px">
-        <h1 style="color: white; top: -28px; left: 30px; position: absolute">WHITE AS SNOW</h1>
-        <h1 style="color: #333333; top: -4px; left: 30px; position: absolute">DETAIL</h1>
-        <h1 style="color: white; top: -28px; right: 30px; position: absolute"><a style="color: white" href="tel:+13609492583">(360) 949-2583</a></h1>
+<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="media/logo_alt.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            White as Snow Detail
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#pricing">Pricing</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Customer Results
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item d-flex gap-2 align-items-center" href="https://www.youtube.com/@wasdetail">
+                            <img class="bi" width="16" height="16" src="media/youtube.svg">
+                            Youtube
+                        </a></li>
+                        <li><a class="dropdown-item d-flex gap-2 align-items-center" href="https://twitter.com/wasdetail">
+                            <img class="bi" width="16" height="16" src="media/twit.svg">
+                            Twitter
+                        </a></li>
+                        <li><a class="dropdown-item d-flex gap-2 align-items-center" href="https://www.facebook.com/profile.php?id=100093386093246">
+                            <img class="bi" width="16" height="16" src="media/face.svg">
+                            Facebook
+                        </a></li>
+                        <li><a class="dropdown-item d-flex gap-2 align-items-center" href="https://www.instagram.com/wasdetail/">
+                            <img class="bi" width="16" height="16" src="media/insta.svg">
+                            Instagram
+                        </a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <a href="tel:+13609492583">(360) 949-2583</a>
+            </form>
+        </div>
     </div>
-    <div id="sign" style="position: fixed; top: 60px; left: 40px; width: 200px; height: 120px; cursor: pointer; z-index: 10" onclick="document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight">
-
-        <div style="margin-top: 16px">
-            <div id="sign-board" style="
-                position: absolute; background-image: url(media/wood.jpg); background-size: 100%; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;
-                width: 182px; height: 80px; left: 10px;"></div>
-            <span style="position:absolute; top:42px; left: 42px; font-weight: normal; font-size: 26px; color: white">See Pricing</span>
+</nav>
+<main>
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+            <div class="col-md-6 p-lg-5 mx-auto my-5 video-overlay">
+                <h1 class="display-3 fw-bold">Washed Clean</h1>
+                <h3 class="fw-normal text-muted mb-3">"Though your sins are like scarlet,<br>I will make them as white as snow..."</h3>
+                <div class="d-flex gap-3 justify-content-center lead fw-normal">
+                    <a class="icon-link" href="tel:+13609492583">
+                        Schedule an Appointment
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <video id="splash-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                <source src="media/foam.mov" type="video/mp4">
+            </video>
         </div>
 
-        <div style="background-color: white; background-image: url(media/rope.jpg); background-size: 700%; position: absolute; left: 10px; width: 6px; height: 16px; top: 0"></div>
-        <div style="background-color: white; background-image: url(media/rope.jpg); background-size: 700%; position: absolute; left: 186px; width: 6px; height: 16px; top: 0"></div>
 
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 py-3">
+                <h2 class="display-5">Exterior</h2>
+                <p class="lead">Bright and Long Lasting<br>Protection you can count on.</p>
+            </div>
+            <div class="bg-body-tertiary shadow-sm mx-auto overflow-hidden" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                <video src="media/brush.mov#t=5" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+            </div>
+        </div>
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div class="my-3 p-3">
+                <h2 class="display-5">Interior</h2>
+                <p class="lead">Looks Sweet, Feels Sweeter<br>High quality where you need it most.</p>
+            </div>
+            <div class="bg-dark shadow-sm mx-auto overflow-hidden" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                <video src="media/door.mov" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+            </div>
+        </div>
     </div>
 
-    <div style="position: fixed; width: 100vw; height: 700px; background-color: white; z-index: -999">
-        <video class="full-video" id="red_trees" width="100%" style="display: block; margin: 0 0; position: absolute" muted src="media/red_trees.mov#t=7"></video>
-        <span style="top: 30vh; left: 25vw; position: relative; font-weight: normal; color: white; text-shadow: 0 0 3px black; font-size: 20px">
-            "Though your sins are like scarlet,<br> I will make them as white as snow..."
-        </span>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 id="pricing" class="display-4 fw-normal text-body-emphasis">Pricing</h1>
+        <p class="fs-5 text-body-secondary">Additional services available on request.</p>
     </div>
 
-    <div id="filler" style="width: 100vw; height: 700px"></div>
-
-    <div style="background-color: white">
-        <div style="width: 100%; height: 150px; overflow: hidden; text-align: center; position: relative">
-            <video id="droplet" src="media/droplet.mov" style="transform: translateY(-400px) translateX(-300px);" muted autoplay loop></video>
-            <span style="position: absolute; top: 60px; left: 600px; font-size: 30px; color: white">Where Detail Matters</span>
-        </div>
-
-        <div class="flex">
-            <div class="inner-flex">
-                <div style="height: 100px; text-align: center">
-            <span>
-                <b>Exterior</b><br>
-            Bright and Long Lasting<br>
-            Protection you can count on.<br>
-            </span>
-                </div>
-
-                <div style="height: 500px; ">
-                    <div style="width: 450px; height: 450px; margin: auto; background-color: lightgrey; overflow: hidden">
-                        <video src="media/brush.mov#t=5" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+    <div class="container py-3">
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Exterior Only</h4>
+                    </div>
+                    <div class="card-body pricing-card-body">
+                        <h1 class="card-title pricing-card-title">$200<small class="text-body-secondary fw-light"> car</small><br>$250<small class="text-body-secondary fw-light"> truck</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Emblems and crevices brush detailed</li>
+                            <li>Paint, wheels and tires</li>
+                            <li>Snow foam long lasting shine</li>
+                            <li>Microfiber wipes used to spot dry</li>
+                            <li>All purpose wax bars hand applied</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-
-            <div class="inner-flex">
-                <div style="height: 100px; text-align: center">
-            <span>
-                <b>Interior</b><br>
-            Looks Sweet, Feels Sweeter<br>
-                High quality where you need it most.
-            </span>
-                </div>
-
-                <div style="height: 500px; text-align: right;">
-                    <div style="width: 450px; height: 450px; margin: auto; background-color: lightgrey; overflow: hidden">
-                        <video src="media/door.mov" muted loop controls height="100%" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Interior Only</h4>
+                    </div>
+                    <div class="card-body pricing-card-body">
+                        <h1 class="card-title pricing-card-title">$200<small class="text-body-secondary fw-light"> car</small><br>$250<small class="text-body-secondary fw-light"> truck</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Carpets shampooed with Cali Luxe®</li>
+                            <li>Heavy duty vacuuming in every knook and cranny</li>
+                            <li>Windows sparkle treated and Windexed®</li>
+                            <li>Fabric and leather cleaned and conditioned</li>
+                            <li>All plastic surfaces wiped with Max Renewal®</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div style="height: 600px; width: 100%; position: relative; text-align: center; background-color: black">
-<!--            <span style="position: absolute; top: 0; color: white;">&nbsp;By Local Craftsmen</span>-->
-            <video class="full-video" style="position: absolute; left: 0; top: 0;" src="media/snow_night.mov" muted autoplay loop></video>
-            <div style="width: 100%; padding-top: 12px; text-align: center; opacity: .99">
-                <h1><span style="font-weight: normal; color: white">Pricing</span></h1>
-                <span style="color: white">Additional services available on request.</span>
-            </div>
-
-            <div class="flex" style="background-color: black">
-
-                <div class="inner-flex3">
-                    <div style="height: 548px">
-                        <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
-                            <div style="padding: 10px">
-                                <span style="font-weight: normal; font-size: 22px">Outside</span>
-                                <span><br><br></span>
-                                <li><span>Emblems and crevices brush detailed</span></li>
-                                <li><span>Paint, wheels and tires</span></li>
-                                <li><span>Snow foam long lasting shine</span></li>
-                                <li><span>Microfiber wipes used to spot dry</span></li>
-                                <li><span>All purpose wax bars hand applied</span></li>
-                                <span><br>Compact Car or Sedan: $200</span>
-                                <span><br>Truck or Large SUV: $250</span>
-                            </div>
-                        </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Inside Out</h4>
                     </div>
-                </div>
-
-                <div class="inner-flex3">
-                    <div style="height: 548px;">
-                        <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
-                            <div style="padding: 10px">
-                                <span style="font-weight: normal; font-size: 22px">In</span>
-                                <span><br><br></span>
-                                <li><span>Carpets shampooed with Cali Luxe®</span></li>
-                                <li><span>Heavy duty vacuuming in every knook and cranny</span></li>
-                                <li><span>Windows sparkle treated and Windexed®</span></li>
-                                <li><span>Fabric and leather cleaned and conditioned</span></li>
-                                <li><span>All plastic surfaces wiped with Max Renewal®</span></li>
-                                <br>
-                                <span>Compact Car or Sedan: $200</span>
-                                <span><br>Truck or Large SUV: $250</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="inner-flex3">
-                    <div style="height: 548px">
-                        <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .99; box-shadow:0 2px 8px black; padding-top: 12px; text-align: left; border-radius: 3px">
-                            <div style="padding: 14px">
-                                <span style="font-weight: normal; font-size: 22px">Inside & Out </span><span> (Best Deal)</span>
-                                <span><br><br></span>
-                                <li><span>Emblems and crevices brush detailed</span></li>
-                                <li><span>Paint, wheels and tires</span></li>
-                                <li><span>Snow foam long lasting shine</span></li>
-                                <li><span>Microfiber wipes used to spot dry</span></li>
-                                <li><span>All purpose wax bars hand applied</span></li>
-                                <li><span>Carpets shampooed with Cali Luxe®</span></li>
-                                <li><span>Heavy duty vacuuming in every knook and cranny</span></li>
-                                <li><span>Windows sparkle treated and Windexed®</span></li>
-                                <li><span>Fabric and leather cleaned and conditioned</span></li>
-                                <li><span>All plastic surfaces wiped with Max Renewal®</span></li>
-                                <span><br>Compact Car or Sedan: $350</span>
-                                <span><br>Truck or Large SUV: $450</span>
-                            </div>
-                        </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">$350<small class="text-body-secondary fw-light"> car</small><br>$450<small class="text-body-secondary fw-light"> truck</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Emblems and crevices brush detailed</li>
+                            <li>Paint, wheels and tires</li>
+                            <li>Snow foam long lasting shine</li>
+                            <li>Microfiber wipes used to spot dry</li>
+                            <li>All purpose wax bars hand applied</li>
+                            <li>Carpets shampooed with Cali Luxe®</li>
+                            <li>Heavy duty vacuuming in every knook and cranny</li>
+                            <li>Windows sparkle treated and Windexed®</li>
+                            <li>Fabric and leather cleaned and conditioned</li>
+                            <li>All plastic surfaces wiped with Max Renewal®</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
-<!--        <div style="height: 560px; width: 100%; float: left; text-align: center; background: url('media/wide2.jpeg') no-repeat; background-size: 100%, auto">-->
-<!--            <div style="width: 100%; padding-top: 12px; text-align: center">-->
-<!--                <span style="font-weight: normal">Which treatment is right for you?</span>-->
-<!--            </div>-->
-<!--            <div style="float: left; width: 33%; height: 548px;">-->
-<!--                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">-->
-<!--                    <span style="font-weight: normal; font-size: 22px">Basic</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div style="float: left; width: 33%; height: 548px">-->
-<!--                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">-->
-<!--                    <span style="font-weight: normal; font-size: 22px">Premium</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div style="float: left; width: 33%; height: 548px">-->
-<!--                <div style="height: 460px; width: 80%; margin: 20px auto; background-color: white; opacity: .5; box-shadow:0 2px 8px black; border-radius: 14px; padding-top: 12px">-->
-<!--                    <span style="font-weight: normal; font-size: 22px">VIP</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
-<script>
-function scroll()
-{
-    document.scrollingElement.animate()
-
-}
-
-    // document.getElementById("red_trees").addEventListener("ended", () =>
-    // {
-    //     document.getElementById("droplet").play();
-    // }, false);
-
-</script>
 </html>
