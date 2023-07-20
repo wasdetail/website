@@ -55,7 +55,7 @@
                 font-size: 3.5rem;
             }
             .pricing-card-body{
-                height: 530px;
+                display: flex;
             }
         }
 
@@ -118,7 +118,7 @@
         }
     </style>
     <link href="css/product.css" rel="stylesheet">
-    <link href="pricing.css" rel="stylesheet">
+    <link href="css/pricing.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
@@ -163,18 +163,18 @@
                 </li>
             </ul>
             <form class="d-flex" role="search">
-                <a href="tel:+13609492583">(360) 949-2583</a>
+                <a href="tel:+13609492583" style="color: #a90000; text-decoration-color: #a90000">(360) 949-2583</a>
             </form>
         </div>
     </div>
 </nav>
 <main>
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-            <div class="col-md-6 p-lg-5 mx-auto my-5 video-overlay">
+            <div class="col-md-6 p-lg-5 mx-auto my-5 video-overlay" style="padding: 3rem!important">
                 <h1 class="display-3 fw-bold">Washed Clean</h1>
                 <h3 class="fw-normal text-muted mb-3">"Though your sins are like scarlet,<br>I will make them as white as snow..."</h3>
                 <div class="d-flex gap-3 justify-content-center lead fw-normal">
-                    <a class="icon-link" href="tel:+13609492583">
+                    <a class="icon-link" href="tel:+13609492583" style="color: #a90000; text-decoration-color: #a90000">
                         Schedule an Appointment
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -216,12 +216,12 @@
 
     <div class="container py-3">
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-            <div class="col">
+            <div class="col pricing-card-body">
                 <div class="card mb-4 rounded-3 shadow-sm">
                     <div class="card-header py-3">
                         <h4 class="my-0 fw-normal">Exterior Only</h4>
                     </div>
-                    <div class="card-body pricing-card-body">
+                    <div class="card-body">
                         <h1 class="card-title pricing-card-title">$200<small class="text-body-secondary fw-light"> car</small><br>$250<small class="text-body-secondary fw-light"> truck</small></h1>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>Emblems and crevices brush detailed</li>
@@ -233,12 +233,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col pricing-card-body">
                 <div class="card mb-4 rounded-3 shadow-sm">
                     <div class="card-header py-3">
                         <h4 class="my-0 fw-normal">Interior Only</h4>
                     </div>
-                    <div class="card-body pricing-card-body">
+                    <div class="card-body">
                         <h1 class="card-title pricing-card-title">$200<small class="text-body-secondary fw-light"> car</small><br>$250<small class="text-body-secondary fw-light"> truck</small></h1>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>Carpets shampooed </li>
@@ -251,11 +251,11 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-bg-primary border-primary">
+                <div class="card mb-4 rounded-3 shadow-sm" style="border-color: #a90000">
+                    <div class="card-header py-3" style="background-color: #a90000; color: white">
                         <h4 class="my-0 fw-normal">Interior/Exterior</h4>
                     </div>
-                    <div class="card-body">
+                    <div id="pricing-action-card" class="card-body">
                         <h1 class="card-title pricing-card-title">$350<small class="text-body-secondary fw-light"> car</small><br>$450<small class="text-body-secondary fw-light"> truck</small></h1>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>Emblems and crevices brush detailed</li>
@@ -277,5 +277,7 @@
 
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script>
+</script>
 </body>
 </html>
